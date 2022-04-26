@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GenreResource;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        return Genre::all();
+        return GenreResource::collection(Genre::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        return Genre::find($id);
+        return new GenreResource(Genre::findOrFail($id));
     }
 
     /**
