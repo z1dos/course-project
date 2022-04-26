@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class BooksInTheProfile extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'books_id',
+        'users_id',
+    ];
 }
