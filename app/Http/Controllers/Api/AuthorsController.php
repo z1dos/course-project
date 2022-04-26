@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Http\Request;
 
-class BooksController extends Controller
+class AuthorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        return Author::all();
     }
 
     /**
@@ -37,7 +37,7 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        return Book::find($id);
+        return Author::find($id);
     }
 
     /**
