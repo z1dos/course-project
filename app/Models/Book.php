@@ -9,6 +9,11 @@ class Book extends Model
 {
     use HasFactory;
 
+    public function genres()
+    {
+        return $this->hasOne(Genre::class);
+    }
+
     protected $fillable = [
         'title',
         'authors_id',
