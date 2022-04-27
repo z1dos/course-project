@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FeedbackResource;
-use App\Models\Feedback;
 use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+class BookInTheProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        return FeedbackResource::collection(Feedback::get());
+        //
     }
 
     /**
@@ -38,7 +36,7 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        return new FeedbackResource(Feedback::with('books', 'user')->findOrFail($id));
+        //
     }
 
     /**
