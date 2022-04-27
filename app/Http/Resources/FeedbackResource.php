@@ -17,7 +17,6 @@ class FeedbackResource extends JsonResource
         return [
             'id' => $this->id,
             'book_id' => $this->book_id,
-            'books' => $this->books,
             'feedback' => $this->feedback,
             'users_id' => $this->users_id,
             'created_at' => $this->created_at,

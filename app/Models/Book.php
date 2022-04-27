@@ -9,6 +9,16 @@ class Book extends Model
 {
     use HasFactory;
 
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function estimations()
+    {
+        return $this->hasMany(Estimation::class);
+    }
+
     public function genres()
     {
         return $this->hasOne(Genre::class);

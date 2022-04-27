@@ -21,6 +21,8 @@ class BookResource extends JsonResource
             'genres_id' => $this->genres_id,
             'description' => $this->description,
             'release_date' => $this->release_date,
+            'feedback' => FeedbackResource::collection($this->feedback),
+            'estimations' => $this->estimations,
         ];
     }
 }
