@@ -22,11 +22,13 @@ Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index'])
 Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show']);
 Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 
+Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
+Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
+
 Route::apiResources([
     'books' => \App\Http\Controllers\Api\BooksController::class,
     'authors' => \App\Http\Controllers\Api\AuthorsController::class,
     'genres' => \App\Http\Controllers\Api\GenreController::class,
     'feedback' => \App\Http\Controllers\Api\FeedbackController::class,
     'estimation' => \App\Http\Controllers\Api\EstimationController::class,
-    'profile' => \App\Http\Controllers\Api\BookInTheProfileController::class,
 ]);

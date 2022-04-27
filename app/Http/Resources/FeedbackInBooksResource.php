@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Book;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BookInTheProfileResource extends JsonResource
+class FeedbackInBooksResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +16,8 @@ class BookInTheProfileResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => $this->user,
-            'book' => $this->book,
+            'users_id' => $this->users_id,
+            'feedback' => $this->feedback,
             'created_at' => $this->created_at,
         ];
     }
