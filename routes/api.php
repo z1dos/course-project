@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
+Route::middleware('isAdmin')->get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show']);
 Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 
