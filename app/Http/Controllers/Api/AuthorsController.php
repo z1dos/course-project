@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AurhorResource;
+use App\Http\Resources\AuthorResource;
 use App\Models\Author;
 use Illuminate\Http\Request;
 
@@ -16,7 +16,7 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        return AurhorResource::collection(Author::all());
+        return AuthorResource::collection(Author::all());
     }
 
     /**
@@ -38,7 +38,7 @@ class AuthorsController extends Controller
      */
     public function show($id)
     {
-        return new AurhorResource(Author::findOrFail($id));
+        return new AuthorResource(Author::findOrFail($id));
     }
 
     /**
