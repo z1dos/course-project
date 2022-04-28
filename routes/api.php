@@ -34,6 +34,7 @@ Route::delete('/deleteBook/{id}', [\App\Http\Controllers\Api\BooksController::cl
 
 Route::get('/allFeedbacks', [\App\Http\Controllers\Api\FeedbackController::class, 'index']);
 Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'show']);
+Route::delete('/deleteFeedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
 
 Route::get('/allEstimations', [\App\Http\Controllers\Api\EstimationController::class, 'index']);
 Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::class, 'show']);
