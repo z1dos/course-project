@@ -28,9 +28,16 @@ Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileControlle
 Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']);
 Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
 
-Route::apiResources([
-    'authors' => \App\Http\Controllers\Api\AuthorsController::class,
-    'genres' => \App\Http\Controllers\Api\GenreController::class,
-    'feedback' => \App\Http\Controllers\Api\FeedbackController::class,
-    'estimation' => \App\Http\Controllers\Api\EstimationController::class,
-]);
+Route::get('/allFeedbacks', [\App\Http\Controllers\Api\FeedbackController::class, 'index']);
+Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'show']);
+
+Route::get('/allEstimations', [\App\Http\Controllers\Api\EstimationController::class, 'index']);
+Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::class, 'show']);
+
+Route::get('/allAuthors', [\App\Http\Controllers\Api\AuthorsController::class, 'index']);
+Route::get('/author/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'show']);
+
+Route::get('/allGenres', [\App\Http\Controllers\Api\GenreController::class, 'index']);
+Route::get('/genre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'show']);
+
+
