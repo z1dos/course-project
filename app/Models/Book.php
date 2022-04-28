@@ -19,9 +19,14 @@ class Book extends Model
         return $this->hasMany(Estimation::class);
     }
 
-    public function genres()
+    public function author()
     {
-        return $this->hasOne(Genre::class);
+        return $this->belongsTo(Author::class, 'authors_id');
+    }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genres_id');
     }
 
     protected $fillable = [
