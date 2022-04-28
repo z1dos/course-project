@@ -62,6 +62,6 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        Genre::find($id)->delete();
+        Genre::findOrFail($id)->delete();
     }
 }
