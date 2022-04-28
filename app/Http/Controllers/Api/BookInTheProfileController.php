@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BookInTheProfileResource;
+use App\Models\BooksInTheProfile;
 use Illuminate\Http\Request;
 
 class BookInTheProfileController extends Controller
@@ -14,7 +16,7 @@ class BookInTheProfileController extends Controller
      */
     public function index()
     {
-        //
+        return BookInTheProfileResource::collection(BooksInTheProfile::all());
     }
 
     /**

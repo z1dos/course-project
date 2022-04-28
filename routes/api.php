@@ -25,8 +25,10 @@ Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class,
 Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
 Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
 
+Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']);
+Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
+
 Route::apiResources([
-    'books' => \App\Http\Controllers\Api\BooksController::class,
     'authors' => \App\Http\Controllers\Api\AuthorsController::class,
     'genres' => \App\Http\Controllers\Api\GenreController::class,
     'feedback' => \App\Http\Controllers\Api\FeedbackController::class,
