@@ -25,6 +25,7 @@ Route::post('/createUser', [\App\Http\Controllers\Api\UserController::class, 'st
 
 Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
 Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
+Route::delete('/profile/deleteBook/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'destroy']);
 
 Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']);
 Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
