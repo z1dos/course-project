@@ -27,7 +27,7 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Genre::create($request->all);
     }
 
     /**
@@ -50,7 +50,8 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Genre::findOrFail($id);
+        $article->update($request->all());
     }
 
     /**
@@ -61,6 +62,6 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Genre::find($id)->delete();
     }
 }
