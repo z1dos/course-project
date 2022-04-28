@@ -17,7 +17,7 @@ class BookInTheProfileResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => $this->users_id,
+            'users_id' => $this->users_id,
             'book' => $this->books_id,
             'created_at' => $this->created_at,
         ];
