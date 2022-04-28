@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create($request->all);
+        return User::create($request->all());
     }
 
     /**
@@ -62,6 +62,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
     }
 }

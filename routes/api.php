@@ -18,10 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('isAdmin')->get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
+Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show']);
 Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 Route::post('/createUser', [\App\Http\Controllers\Api\UserController::class, 'store']);
+Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
 
 Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
 Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
@@ -31,6 +32,7 @@ Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']
 Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
 Route::put('/updateBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'update']);
 Route::delete('/deleteBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'destroy']);
+Route::post('/createBook', [\App\Http\Controllers\Api\BooksController::class, 'store']);
 
 Route::get('/allFeedbacks', [\App\Http\Controllers\Api\FeedbackController::class, 'index']);
 Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'show']);
