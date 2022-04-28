@@ -42,5 +42,8 @@ Route::get('/author/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 
 
 Route::get('/allGenres', [\App\Http\Controllers\Api\GenreController::class, 'index']);
 Route::get('/genre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'show']);
+Route::put('/updateGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'update']);
+Route::delete('/deleteGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'destroy']);
+Route::post('/createGenre', [\App\Http\Controllers\Api\GenreController::class, 'store']);
 
 
