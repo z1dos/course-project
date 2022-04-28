@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EstimationResource;
+use App\Models\Estimation;
 use Illuminate\Http\Request;
 
 class EstimationController extends Controller
@@ -14,7 +16,7 @@ class EstimationController extends Controller
      */
     public function index()
     {
-        //
+        return EstimationResource::collection(Estimation::get());
     }
 
     /**
@@ -36,7 +38,7 @@ class EstimationController extends Controller
      */
     public function show($id)
     {
-        //
+        return new EstimationResource(Estimation::findOrFail($id));
     }
 
     /**
