@@ -43,6 +43,8 @@ Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::
 
 Route::get('/allAuthors', [\App\Http\Controllers\Api\AuthorsController::class, 'index']);
 Route::get('/author/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'show']);
+Route::put('/updateAuthor/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'update']);
+Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store']);
 
 Route::get('/allGenres', [\App\Http\Controllers\Api\GenreController::class, 'index']);
 Route::get('/genre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'show']);
