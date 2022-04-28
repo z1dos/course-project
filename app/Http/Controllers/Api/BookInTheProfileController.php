@@ -61,6 +61,6 @@ class BookInTheProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BooksInTheProfile::findOrFail($id)->delete();
     }
 }
