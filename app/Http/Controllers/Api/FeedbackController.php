@@ -38,7 +38,7 @@ class FeedbackController extends Controller
      */
     public function show($id)
     {
-        return new FeedbackResource(Feedback::with('books', 'user')->findOrFail($id));
+        return new FeedbackResource(Feedback::findOrFail($id));
     }
 
     /**
