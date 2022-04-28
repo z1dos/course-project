@@ -16,7 +16,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        return BookResource::collection(Book::with('feedback', 'estimations')->get());
+        return BookResource::collection(Book::with('feedback', 'estimations', 'author', 'genre')->get());
     }
 
     /**
@@ -38,7 +38,7 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        return new BookResource(Book::with('feedback', 'estimations')->findOrFail($id));
+        return new BookResource(Book::with('feedback', 'estimations', 'author', 'genre')->findOrFail($id));
     }
 
     /**
