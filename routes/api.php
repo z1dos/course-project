@@ -18,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 
+Route::get('/allGenres', [\App\Http\Controllers\Api\GenreController::class, 'index']);
+Route::get('/genre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'show']);
+
+Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']);
+Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
+
+Route::get('/allAuthors', [\App\Http\Controllers\Api\AuthorsController::class, 'index']);
+Route::get('/author/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'show']);
+
 //Auth route
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
@@ -34,14 +43,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store'])
     ->middleware('isAdmin');
+Route::put('/updateAuthor/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'update']);
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show']);
 Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
 
-Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']);
-Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
 Route::put('/updateBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'update']);
 Route::delete('/deleteBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'destroy']);
 Route::post('/createBook', [\App\Http\Controllers\Api\BooksController::class, 'store']);
@@ -52,12 +60,6 @@ Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::clas
 Route::get('/allEstimations', [\App\Http\Controllers\Api\EstimationController::class, 'index']);
 Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::class, 'show']);
 
-Route::get('/allAuthors', [\App\Http\Controllers\Api\AuthorsController::class, 'index']);
-Route::get('/author/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'show']);
-Route::put('/updateAuthor/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'update']);
-
-Route::get('/allGenres', [\App\Http\Controllers\Api\GenreController::class, 'index']);
-Route::get('/genre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'show']);
 Route::put('/updateGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'update']);
 Route::delete('/deleteGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'destroy']);
 Route::post('/createGenre', [\App\Http\Controllers\Api\GenreController::class, 'store']);
