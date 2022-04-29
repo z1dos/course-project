@@ -24,6 +24,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
     Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
     Route::delete('/profile/deleteBook/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'destroy']);
+
+    Route::post('/estimationsAdd', [\App\Http\Controllers\Api\EstimationController::class, 'store']);
 });
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
