@@ -10,9 +10,10 @@ class CheckIsAdmin
 
     public function handle($request, Closure $next)
     {
-        if (!Auth::user()->isAdmin()) {
-            return redirect()->route('index');
+        if (Auth::check() && Auth::user()->isAdmin() === 1) {
+            return $next($request);
         }
-        return $next($request);
+
+        return response(['message' => 'Вы не админ'], 403);
     }
 }

@@ -19,16 +19,21 @@ Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'regi
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 
 //Auth route
-Route::group(['middleware'=>['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
     Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
     Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
     Route::delete('/profile/deleteBook/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'destroy']);
 
     Route::post('/estimationsAdd', [\App\Http\Controllers\Api\EstimationController::class, 'store']);
+
     Route::post('/feedbackAdd', [\App\Http\Controllers\Api\FeedbackController::class, 'store']);
     Route::delete('/deleteFeedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
+
 });
+
+Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store'])
+    ->middleware('isAdmin');
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show']);
@@ -50,7 +55,6 @@ Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::
 Route::get('/allAuthors', [\App\Http\Controllers\Api\AuthorsController::class, 'index']);
 Route::get('/author/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'show']);
 Route::put('/updateAuthor/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'update']);
-Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store']);
 
 Route::get('/allGenres', [\App\Http\Controllers\Api\GenreController::class, 'index']);
 Route::get('/genre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'show']);

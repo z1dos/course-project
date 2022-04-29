@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AuthorResource;
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorsController extends Controller
 {
@@ -27,7 +28,25 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        return Author::create($request->all());
+        $fields = $request->validate([
+            'title' => 'required|string',
+            'author_surname' => 'required|string',
+            'author_name' => 'required|string',
+            'author_patronymic' => 'required|string',
+            'date_of_birth' => 'required',
+            'date_of_death' => 'required',
+        ]);
+
+        $author = Author::create([
+            'title' => $fields['title'],
+            'author_surname' => $fields['author_surname'],
+            'author_name' => $fields['author_name'],
+            'author_patronymic' => $fields['author_patronymic'],
+            'date_of_birth' => $fields['date_of_birth'],
+            'date_of_death' => $fields['date_of_death'],
+        ]);
+
+        return $author;
     }
 
     /**
