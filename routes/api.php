@@ -26,6 +26,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::delete('/profile/deleteBook/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'destroy']);
 
     Route::post('/estimationsAdd', [\App\Http\Controllers\Api\EstimationController::class, 'store']);
+    Route::post('/feedbackAdd', [\App\Http\Controllers\Api\FeedbackController::class, 'store']);
+    Route::delete('/deleteFeedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
 });
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
@@ -41,7 +43,6 @@ Route::post('/createBook', [\App\Http\Controllers\Api\BooksController::class, 's
 
 Route::get('/allFeedbacks', [\App\Http\Controllers\Api\FeedbackController::class, 'index']);
 Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'show']);
-Route::delete('/deleteFeedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
 
 Route::get('/allEstimations', [\App\Http\Controllers\Api\EstimationController::class, 'index']);
 Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::class, 'show']);

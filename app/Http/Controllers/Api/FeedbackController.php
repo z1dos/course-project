@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\FeedbackResource;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FeedbackController extends Controller
 {
@@ -27,7 +28,25 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = $request->validate([
+            'users_id' => 'required',
+            'book_id' => 'required',
+            'feedback' => 'required|string',
+        ]);
+
+        $feedback = Feedback::create([
+            'users_id' => $fields['users_id'],
+            'book_id' => $fields['book_id'],
+            'feedback' => $fields['feedback'],
+        ]);
+
+        if (Auth::id() != $feedback->users_id) {
+            return response(
+                ['message' => 'Вы не можете добавлять отзывы на книги от других пользователей'], 401
+            );
+        }
+
+        return $feedback;
     }
 
     /**
@@ -61,6 +80,16 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        Feedback::findOrFail($id)->delete();
+        $feedback = Feedback::findOrFail($id)->delete();
+
+        if (Auth::id() != $feedback->users_id) {
+            return response(
+                ['message' => 'Недостаточно прав'], 401
+            );
+        }
+
+        $deleteFeedback = $feedback->delete();
+
+        return $deleteFeedback;
     }
 }
