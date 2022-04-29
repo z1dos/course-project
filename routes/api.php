@@ -14,8 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Public route
+Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
+Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+
+//Auth route
+Route::group(['middleware'=>['auth:sanctum']], function () {
+    Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
+    Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
+    Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
+    Route::delete('/profile/deleteBook/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'destroy']);
 });
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
@@ -23,10 +31,6 @@ Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show
 Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 Route::post('/createUser', [\App\Http\Controllers\Api\UserController::class, 'store']);
 Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
-
-Route::get('/allProfiles', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'index']);
-Route::get('/profile/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'show']);
-Route::delete('/profile/deleteBook/{id}', [\App\Http\Controllers\Api\BookInTheProfileController::class, 'destroy']);
 
 Route::get('/books', [\App\Http\Controllers\Api\BooksController::class, 'index']);
 Route::get('/book/{id}', [\App\Http\Controllers\Api\BooksController::class, 'show']);
