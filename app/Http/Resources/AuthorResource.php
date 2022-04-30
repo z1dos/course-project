@@ -9,20 +9,16 @@ class AuthorResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
     {
         return [
-            'id' => $this-> id,
-            'author_fio' => [
-                'author_surname' => $this-> author_surname,
-                'author_name' => $this-> author_name,
-                'author_patronymic' => $this-> author_patronymic,
-            ],
-            'date_of_birth' => $this-> date_of_birth,
-            'date_of_death' => $this-> date_of_death,
+            'id' => $this->id,
+            'full_name_author' => $this->full_name,
+            'date_of_birth' => $this->date_of_birth,
+            'date_of_death' => $this->date_of_death,
         ];
     }
 }
