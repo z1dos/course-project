@@ -78,12 +78,11 @@ class FeedbackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $userID)
+    public function destroy($id)
     {
         $feedback = Feedback::findOrFail($id);
-        $userID = Feedback::findOrFail($users_id);
 
-        if (auth()->check() && auth()->user()->getAuthIdentifier() === $feedback->users_id) {
+        if (auth()->check() && auth()->user()->getAuthIdentifier() === $feedback->id) {
             $deleteFeedback = $feedback->delete();
 
             return $deleteFeedback;
