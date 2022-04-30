@@ -19,14 +19,6 @@ class Book extends Model
         return $this->hasMany(Estimation::class);
     }
 
-    public function authorList($collection)
-    {
-        foreach ($collection as $item){
-            $newArr[] = $item['author_surname'];
-        }
-        return implode(',', $newArr);
-    }
-
     public function author()
     {
         return $this->belongsTo(Author::class, 'authors_id');
@@ -40,6 +32,7 @@ class Book extends Model
     protected $fillable = [
         'title',
         'authors_id',
+        'imagine',
         'genres_id',
         'description',
         'release_date',

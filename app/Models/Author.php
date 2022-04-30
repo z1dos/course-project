@@ -14,6 +14,14 @@ class Author extends Model
         return $this->author_surname . ' ' . $this->author_name . ' ' . $this->author_patronymic;
     }
 
+    public function authorList($collection)
+    {
+        foreach ($collection as $item){
+            $newArr[] = $item['author_surname'];
+        }
+        return implode(',', $newArr);
+    }
+
     protected $fillable = [
         'author_avatar',
         'author_surname',
