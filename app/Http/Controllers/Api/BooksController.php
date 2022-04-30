@@ -14,9 +14,10 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return BookResource::collection(Book::with('feedback', 'estimations', 'author', 'genre')->get());
+        $books = BookResource::collection(Book::with('feedback', 'estimations', 'author', 'genre')->get());
+        return $books;
     }
 
     /**
@@ -27,7 +28,24 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        return Book::create($request->all());
+        $fields = $request->validate([
+            'title' => 'required|string',
+            'authors_id' => 'required',
+            'genres_id' => 'required',
+            'description' => 'required|string',
+            'release_date' => 'required',
+        ]);
+
+        $book = Book::create([
+            'title' => $fields['title'],
+            'imagine' => 'imagine',
+            'authors_id' => $fields['authors_id'],
+            'genres_id' => $fields['genres_id'],
+            'description' => $fields['description'],
+            'release_date' => $fields['release_date'],
+        ]);
+
+        return $book;
     }
 
     /**

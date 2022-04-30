@@ -41,18 +41,25 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 });
 
+// Admin route
 Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store'])
     ->middleware('isAdmin');
 Route::put('/updateAuthor/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'update']);
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);
 Route::get('/user/{id}', [\App\Http\Controllers\Api\UserController::class, 'show']);
-Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
-Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
 
+Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
 Route::put('/updateBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'update']);
 Route::delete('/deleteBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'destroy']);
 Route::post('/createBook', [\App\Http\Controllers\Api\BooksController::class, 'store']);
+
+Route::put('/updateGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'update']);
+Route::delete('/deleteGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'destroy']);
+Route::post('/createGenre', [\App\Http\Controllers\Api\GenreController::class, 'store']);
+
+//еще думаю куда их
+Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);
 
 Route::get('/allFeedbacks', [\App\Http\Controllers\Api\FeedbackController::class, 'index']);
 Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'show']);
@@ -60,8 +67,5 @@ Route::get('/feedback/{id}', [\App\Http\Controllers\Api\FeedbackController::clas
 Route::get('/allEstimations', [\App\Http\Controllers\Api\EstimationController::class, 'index']);
 Route::get('/estimation/{id}', [\App\Http\Controllers\Api\EstimationController::class, 'show']);
 
-Route::put('/updateGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'update']);
-Route::delete('/deleteGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'destroy']);
-Route::post('/createGenre', [\App\Http\Controllers\Api\GenreController::class, 'store']);
 
 
