@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/estimationsAdd', [\App\Http\Controllers\Api\EstimationController::class, 'store']);
 
     Route::post('/feedbackAdd', [\App\Http\Controllers\Api\FeedbackController::class, 'store']);
-    Route::delete('/deleteFeedback/{id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
+    Route::delete('/deleteFeedback/{id}/user/{users_id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
 
     Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
 });
