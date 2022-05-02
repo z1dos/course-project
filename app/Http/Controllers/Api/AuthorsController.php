@@ -29,7 +29,6 @@ class AuthorsController extends Controller
     public function store(Request $request)
     {
         $fields = $request->validate([
-            'title' => 'required|string',
             'author_surname' => 'required|string',
             'author_name' => 'required|string',
             'author_patronymic' => 'required|string',
@@ -38,7 +37,6 @@ class AuthorsController extends Controller
         ]);
 
         $author = Author::create([
-            'title' => $fields['title'],
             'author_surname' => $fields['author_surname'],
             'author_name' => $fields['author_name'],
             'author_patronymic' => $fields['author_patronymic'],
@@ -70,7 +68,19 @@ class AuthorsController extends Controller
     public function update(Request $request, $id)
     {
         $article = Author::findOrFail($id);
-        $article->update($request->all());
+
+        $fields = $request->validate([
+            'author_surname' => 'string',
+            'author_name' => 'string',
+            'author_patronymic' => 'string',
+        ]);
+
+        $article->update([
+            'author_surname' => $fields['author_surname'],
+            'author_name' => $fields['author_name'],
+            'author_patronymic' => $fields['author_patronymic'],
+        ]);
+        return $article;
     }
 
     /**

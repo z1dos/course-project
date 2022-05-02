@@ -54,9 +54,9 @@ Route::put('/updateBook/{id}', [\App\Http\Controllers\Api\BooksController::class
 Route::delete('/deleteBook/{id}', [\App\Http\Controllers\Api\BooksController::class, 'destroy']);
 Route::post('/createBook', [\App\Http\Controllers\Api\BooksController::class, 'store']);
 
-Route::put('/updateGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'update']);
 Route::delete('/deleteGenre/{id}', [\App\Http\Controllers\Api\GenreController::class, 'destroy']);
 Route::post('/createGenre', [\App\Http\Controllers\Api\GenreController::class, 'store']);
+Route::put('/genreUpdate/{id}', [\App\Http\Controllers\Api\GenreController::class, 'update']);
 
 //еще думаю куда их
 Route::put('/updateUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'update']);

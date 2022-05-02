@@ -59,7 +59,15 @@ class GenreController extends Controller
     public function update(Request $request, $id)
     {
         $article = Genre::findOrFail($id);
-        $article->update($request->all());
+
+        $fields = $request->validate([
+            'genre_title' => 'required|string',
+        ]);
+
+        $article->update([
+            'genre_title' => $fields['genre_title'],
+        ]);
+        return $article;
     }
 
     /**
