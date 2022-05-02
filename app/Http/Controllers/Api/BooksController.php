@@ -69,7 +69,23 @@ class BooksController extends Controller
     public function update(Request $request, $id)
     {
         $article = Book::findOrFail($id);
-        $article->update($request->all());
+
+        $fields = $request->validate([
+            'title' => 'required|string',
+            'authors_id' => 'required',
+            'genres_id' => 'required',
+            'description' => 'required|string',
+            'release_date' => 'required',
+        ]);
+
+        $article->update([
+            'title' => $fields['title'],
+            'authors_id' => $fields['authors_id'],
+            'genres_id' => $fields['genres_id'],
+            'description' => $fields['description'],
+            'release_date' => $fields['release_date'],
+        ]);
+        return $article;
     }
 
     /**
