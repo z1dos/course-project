@@ -40,11 +40,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/deleteFeedback/{id}/user/{users_id}', [\App\Http\Controllers\Api\FeedbackController::class, 'destroy']);
 
     Route::delete('/deleteUser/{id}', [\App\Http\Controllers\Api\UserController::class, 'destroy']);
+
+    Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store'])
+        ->middleware('isAdmin');
 });
 
 // Admin route
-Route::post('/createAuthor', [\App\Http\Controllers\Api\AuthorsController::class, 'store'])
-    ->middleware('isAdmin');
 Route::put('/updateAuthor/{id}', [\App\Http\Controllers\Api\AuthorsController::class, 'update']);
 
 Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']);

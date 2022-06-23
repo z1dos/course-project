@@ -50,9 +50,9 @@ class AuthController extends Controller
 
         $user = User::where('login', $fields['login'])->first();
 
-        if (!$user || !Hash::check($fields['password'], $user->password)) {
+        if (!$user && ! Hash::check($request->password, $user->password)) {
             return response(
-                ['message' => 'bad'], 401
+                ['message' => 'bad'],  401
             );
         }
 
